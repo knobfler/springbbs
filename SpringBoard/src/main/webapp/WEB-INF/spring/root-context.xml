@@ -31,5 +31,7 @@
 			<constructor-arg name="sqlSessionFactory" ref="factory"></constructor-arg>
 		</bean>
 		
+		<!-- 톰캣에서 실행시 자동으로 객체 생성한다. -->
 		<context:component-scan base-package="com.dongho.board.persistance"></context:component-scan>
+		<context:component-scan base-package="com.dongho.board.service"></context:component-scan>
 </beans>

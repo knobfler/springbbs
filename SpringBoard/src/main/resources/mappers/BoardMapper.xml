@@ -5,7 +5,7 @@
 <mapper namespace="com.dongho.mapper.BoardMapper">
 	<select id="selectBoardListAll" resultType="com.dongho.board.domain.BoardVO">
 	<![CDATA[
-		SELECT * FROM BOARD WHERE bno > 0 ORDER BY bno, regDate DESC;
+		SELECT * FROM BOARD WHERE bno > 0 ORDER BY bno DESC;
 	]]>
 
 	</select>

@@ -1,50 +1,53 @@
-package com.dongho.board.persistance;
+package com.dongho.board.service;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
 import com.dongho.board.domain.BoardVO;
+import com.dongho.board.persistance.BoardDAOImpl;
 
-@Repository
-public class BoardDAOImpl implements BoardDAOInterface {
-
-	@Inject
-	SqlSession sqlSession;
+@Service
+public class BoardServiceImpl implements BoardService {
 	
-	private static final String NAME_SPACE = "com.dongho.mapper.BoardMapper";
+	@Autowired
+	BoardDAOImpl dao;
+	
 	
 	@Override
 	public List<BoardVO> GetAllBoardList() {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList(NAME_SPACE + ".selectBoardListAll");
+		return dao.GetAllBoardList();
 	}
 
 	@Override
 	public void CreateBoard(BoardVO boardVO) {
 		// TODO Auto-generated method stub
-		sqlSession.insert(NAME_SPACE + ".createBoard", boardVO);
-	}	
+		dao.CreateBoard(boardVO);
+		
+	}
 
 	@Override
 	public BoardVO ReadBoard(int bno) {
 		// TODO Auto-generated method stub
-		return sqlSession.selectOne(NAME_SPACE +  ".selectBoard", bno);
+		return dao.ReadBoard(bno);
 	}
 
 	@Override
 	public void UpdateBoard(BoardVO boardVO) {
 		// TODO Auto-generated method stub
-		sqlSession.update(NAME_SPACE + ".updateBoard", boardVO);
+		dao.UpdateBoard(boardVO);
 	}
 
 	@Override
 	public void DeleteBoard(int bno) {
 		// TODO Auto-generated method stub
-		sqlSession.delete(NAME_SPACE + ".deleteBoard", bno);
+		dao.DeleteBoard(bno);
 	}
-
+	
 }
